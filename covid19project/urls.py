@@ -15,13 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from weather_app import views
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('weather/',views.weather_api,name="weather_api"),
-    path('/',include('weather_app.urls',namespace='weather_app')),
+   
     path('covid19/',include('covid19.urls',namespace="covid19_app"))
     
         ]
