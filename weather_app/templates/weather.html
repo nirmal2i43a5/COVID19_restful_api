@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}weather_forecast {% endblock %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+
+<body>
+    <section class="hero is-success">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title" style="text-align: center;">
+                    Know the weather details !
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                {{ form.name }}
+                            </div>
+                            <div class="control">
+                                <button type="submit" class="button is-info">
+                                    Add City
+                                </button>
+                            </div>
+                        </div>
+
+                        {% if message %}
+                        <div class="   notification alert {{ messsage_class }} ">{{ message }}<!--alsrt is for close dismiss-->
+                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                       
+                        {% endif %}
+                        <!--message for deleted items -->
+                        {% if messages %}
+                        {% for message in messages %}
+                        <li {% if message.tags %} class=" alert-danger  {{ message.tags }}" {% endif %}>{{message}}
+
+
+                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for city_weather in weather_data %}
+
+                    <div class="box">
+                        <a href="{% url 'weather_app:delete' city_weather.city  %}" class="float-right">&times;</i></a>
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="Image">
+                                </figure>
+                              
+
+
+                            </div>
+                            
+                              
+                            
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ city_weather.temperature }}° F</span>
+                                        <br> {{ city_weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        body{
+            background: lightgray;
+            color: lightgray;
+        }
+    </style>
+</body>
+
+</html>
+
+
+{% endblock %}

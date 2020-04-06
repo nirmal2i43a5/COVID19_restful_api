@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block title %}Corona Details{% endblock %}
+
+
+{% block content %}
+<hr>
+<!-- <h4 style="text-align: center;margin-top:10%;"> {{country_name}}</h4> -->
+
+<div class="card bg-info">
+    <div class="card-header" style="text-align: center; font-size:50px;color:white;">COVID19 Latest Update</div>
+</div>
+<hr>
+<div class="card bg-light">
+    
+    <div class="card-header" style="text-align:center;"><strong>World </strong></div>
+   
+
+</div>
+
+<!--below is for only world data including nepal-->
+<div class="row">
+
+    <div class="col col-md-4">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Cases</div>
+            <div class="card-body mb-2" style="height: 15px;">
+              {{total_cases}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col col-md-4">
+
+        <div class="card bg-danger" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Deaths</div>
+            <div class="card-body mb-2" style="height: 15px;">
+               {{total_deaths}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col col-md-4">
+
+        <div class="card bg-success" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Recovered</div>
+            <div class="card-body mb-2" style="height: 15px;">
+              {{total_recovered}}
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!--for nepal data using nepal api only-->
+
+<div class="card bg-light">
+    
+    <div class="card-header" style="text-align:center;"><strong> {{nepal_datas.country_name}}</strong></div>
+   
+
+</div>
+
+
+
+<div class="row">
+    
+ 
+    
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Cases</div>
+            <div class="card-body mb-2" style="height: 15px;">
+                {{nepal_datas.total_cases}}
+            </div>
+
+        </div>
+
+    </div>
+  
+    <div class="col col-md-2">
+
+        <div class="card bg-primary" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Active Cases</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{nepal_datas.active_cases}}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="col col-md-2">
+
+        <div class="card bg-danger" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Deaths</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{nepal_datas.total_deaths}}
+
+
+            </div>
+            
+
+        </div>
+
+    </div>
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">New Deaths</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{nepal_datas.new_deaths}}
+            </div>
+
+        </div>
+
+    </div>
+
+   
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">New Cases</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{nepal_datas.new_cases}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col col-md-2">
+
+        <div class="card bg-success" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Recovered</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{nepal_datas.total_recovered}}
+            </div>
+
+        </div>
+
+
+    </div>
+    
+
+
+    
+</div>
+
+
+
+<!--below is for all country using all country api -->
+
+{% for data in corona_datas %}
+<div class="card bg-light">
+    
+    <div class="card-header" style="text-align:center;"><strong> {{data.country_name}}</strong></div>
+   
+
+</div>
+
+
+
+<div class="row">
+    
+ 
+    
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Cases</div>
+            <div class="card-body mb-2" style="height: 15px;">
+                {{data.total_cases}}
+            </div>
+
+        </div>
+
+    </div>
+  
+    <div class="col col-md-2">
+
+        <div class="card bg-primary" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Active Cases</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{data.active_cases}}
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="col col-md-2">
+
+        <div class="card bg-danger" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Deaths</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{data.total_deaths}}
+
+
+            </div>
+            
+
+        </div>
+
+    </div>
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">New Deaths</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{data.new_deaths}}
+            </div>
+
+        </div>
+
+    </div>
+
+   
+    <div class="col col-md-2">
+
+        <div class="card bg-info" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">New Cases</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{data.new_cases}}
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col col-md-2">
+
+        <div class="card bg-success" style="text-align: center;color:white;">
+            <div class="card-header" style="height: 40px;">Total Recovered</div>
+            <div class="card-body mb-2" style="height: 30px;">
+                {{data.total_recovered}}
+            </div>
+
+        </div>
+
+
+    </div>
+    
+
+
+    
+</div>
+
+{% endfor %}
+<hr>
+<style>
+    body {
+        background-color: lightgray;
+    }
+</style>
+
+{% endblock %}
